@@ -7,8 +7,10 @@
   "author": "Daniel Koller <daniel-koller@gmx.at>",
   "license": "MIT",
   "dependencies": {
+    "ansi-colors": "^4.1.3",
     "axios": "^1.2.2",
     "cheerio": "^1.0.0-rc.12",
+    "cli-progress": "^3.11.2",
     "fs-extra": "^11.1.0"
   },
   "devDependencies": {

@@ -1,7 +1,20 @@
 import fs from 'node:fs';
 import axios from 'axios';
 import cheerio from 'cheerio';
+import cliProgress from 'cli-progress';
 import fsExtra from 'fs-extra';
+
+// Creating a CLI progress bar
+const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+
+// Initializing the CLI progress bar.
+bar.start(100, 0, {
+  speed: 'N/A',
+});
+
+// Update the values of the CLI progress bar.
+bar.increment();
+bar.update(100);
 
 // First of all we want to check, if our 'memes' folder already exists in our project folder. If it doesn't, fs creates it for us.
 if (!fs.existsSync('memes')) {
@@ -40,11 +53,14 @@ axios
         })
         // If fs isn't able to write to our 'memes'-folder we get an error message.
         .catch((error) => {
-          console.log(error('Writing failed'));
+          console.log(error);
         });
     }
   })
   // If the scraping fails, we get an error message.
   .catch((error) => {
-    console.log(error('Scraping failed'));
+    console.log(error);
   });
+
+// Stop the CLI progress bar.
+bar.stop();
