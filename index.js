@@ -12,18 +12,20 @@ bar.start(100, 0, {
   speed: 'N/A',
 });
 
-// Update the values of the CLI progress bar.
-bar.increment();
-bar.update(100);
-
 // First of all we want to check, if our 'memes' folder already exists in our project folder. If it doesn't, fs creates it for us.
 if (!fs.existsSync('memes')) {
   fs.mkdirSync('memes');
+  // First update to the bar
+  bar.increment();
+  bar.update(25);
 }
 
 // Now we want to clean our 'memes' folder using fsExtra, so we don't get any conflicts while scraping.
 const folder = 'memes';
 fsExtra.emptyDirSync(folder);
+// Second update to the bar
+bar.increment();
+bar.update(50);
 
 // This defines the URL, we want to get our dank memes from.
 const url = 'https://memegen-link-examples-upleveled.netlify.app/';
@@ -34,6 +36,9 @@ axios
   .then((response) => {
     const $ = cheerio.load(response.data);
     console.log('Website is online, will start scraping now!');
+    // Third update to the bar
+    bar.increment();
+    bar.update(75);
     // Only targeting 'img'-elements.
     const images = $('img');
     // Looping over the first ten elements and defining the url for our axios-request.
@@ -61,6 +66,8 @@ axios
   .catch((error) => {
     console.log(error);
   });
-
+// Last update
+bar.increment();
+bar.update(100);
 // Stop the CLI progress bar.
 bar.stop();
