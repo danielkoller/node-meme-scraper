@@ -2,7 +2,7 @@
   "name": "node-meme-generator",
   "version": "1.0.0",
   "type": "module",
-  "main": "node index.js",
+  "main": "index.js",
   "repository": "https://github.com/danielkoller/node-meme-scraper.git",
   "author": "Daniel Koller <daniel-koller@gmx.at>",
   "license": "MIT",
